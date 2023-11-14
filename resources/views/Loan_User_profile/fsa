@@ -1,0 +1,194 @@
+
+//    // Fetch and display Loan User Details
+// function fetchLoanUserDetails(userId) {
+//     // Make an AJAX request to fetch loan user details
+//     $.ajax({
+//         url: `/loan_users/${userId}`, // Replace with your actual API endpoint
+//         method: 'GET',
+//         success: function(data) {
+//             console.log('DATA',data);
+//             // Populate the loan user details tab
+//             $('#loanUserDetails').html(`<p><strong>Owner Name:</strong> ${data.Owner_name}</p>`);
+            
+//         },
+//         error: function(xhr, status, error) {
+//             console.error('Error fetching loan user details:', error);
+//         }
+//     });
+// }
+
+// // Fetch and display Loan User Other Details
+// function fetchLoanUserOtherDetails(userId) {
+//     // Make an AJAX request to fetch loan user other details
+//     $.ajax({
+//         url: `/api/loan_user_other_details/${userId}`, // Replace with your actual API endpoint
+//         method: 'GET',
+//         success: function(data) {
+//             // Populate the loan user other details tab
+//             $('#loanUserOtherDetailDetails').html(`<p><strong>Other Detail:</strong> ${data.other_detail}</p>`);
+//         },
+//         error: function(xhr, status, error) {
+//             console.error('Error fetching loan user other details:', error);
+//         }
+//     });
+// }
+
+// // Fetch and display Loan User Shop Details
+// function fetchLoanUserShopDetails(userId) {
+//     // Make an AJAX request to fetch loan user shop details
+//     $.ajax({
+//         url: `/api/loan_user_shop_details/${userId}`, // Replace with your actual API endpoint
+//         method: 'GET',
+//         success: function(data) {
+//             // Populate the loan user shop details tab
+//             $('#loanUserShopDetailDetails').html(`<p><strong>Shop Detail:</strong> ${data.shop_detail}</p>`);
+//         },
+//         error: function(xhr, status, error) {
+//             console.error('Error fetching loan user shop details:', error);
+//         }
+//     });
+// }
+
+// // Listen for tab changes and fetch data accordingly
+// $('#userModalTabs a').on('shown.bs.tab', function(event) {
+//     const userId = 1; // Replace with the actual user ID
+//     const tabId = event.target.id;
+
+//     if (tabId === 'loanUserTab') {
+//         fetchLoanUserDetails(userId);
+//     } else if (tabId === 'loanUserOtherDetailTab') {
+//         fetchLoanUserOtherDetails(userId);
+//     } else if (tabId === 'loanUserShopDetailTab') {
+//         fetchLoanUserShopDetails(userId);
+//     }
+// });
+
+// // Function to open the modal and fetch initial data
+
+// function fetchLoanUserOtherDetail(userId) {
+//     const url = `/loan_user_other_details/${userId}`;
+
+//     $.ajax({
+//         url: url,
+//         method: 'GET',
+//         success: function(data) {
+//             // Populate the loan user other details in the modal
+//             $('#loanUserOtherDetailDetails').html(`
+//                 <p><strong>Owner Address:</strong> ${data.data.Owner_address}</p>
+//                 <p><strong>Date of Birth:</strong> ${data.data.dob}</p>
+//                 <p><strong>CNIC Issuance Date:</strong> ${data.data.cnic_issuance_date}</p>
+//                 <p><strong>Father's Name:</strong> ${data.data.father_name}</p>
+//                 <p><strong>Mother's Name:</strong> ${data.data.Mother_name}</p>
+//                 <p><strong>Consumer Type:</strong> ${data.data.consumer_type}</p>
+//                 <p><strong>Remarks:</strong> ${data.data.remarks}</p>
+//                 <!-- Add more fields as needed -->
+//             `);
+//         },
+//         error: function(xhr, status, error) {
+//             console.error('Error fetching loan user other details:', error);
+//         }
+//     });
+// }
+//In this modified version of the openUserModal function, we added a call to a new function fetchLoanUserOtherDetail that fetches the loan user other details and populates them in the modal. The details are displayed in the loanUserOtherDetailDetails element in the modal. Make sure you have an API endpoint at /loan_user_other_details/${userId} that returns the loan user other details. Adjust the URL accordingly based on your Laravel routes.
+
+
+
+
+
+
+// function openUserModal(userId) {
+//     const userUrl = `/loan_users/${userId}`;
+//     const otherDetailsUrl = `/loan_user_other_details/${userId}`;
+
+//     // Fetch loan user details
+//     $.ajax({
+//         url: userUrl,
+//         method: 'GET',
+//         success: function (userData) {
+//             console.log('Loan user details:', userData);
+
+//             // Populate the loan user details in the modal
+//             $('#loanUserDetails').html(`
+//                 <p><strong>Owner Name:</strong> ${userData.data.Owner_name}</p>
+//                 <p><strong>Contact:</strong> ${userData.data.phone_no}</p>
+//                 <p><strong>CNIC:</strong> ${userData.data.cnic}</p>
+//                 <p><strong>Contact:</strong> ${userData.data.phone_no}</p>
+//                 <!-- Add more fields as needed -->
+//             `);
+
+//             // Show the modal
+//             const userModal = new bootstrap.Modal(document.getElementById('userModal'));
+//             userModal.show();
+//         },
+//         error: function (xhr, status, error) {
+//             console.error('Error fetching loan user details:', error);
+//         }
+//     });
+
+//     // Fetch loan user other details
+//     $.ajax({
+//         url: otherDetailsUrl,
+//         method: 'GET',
+//         success: function (otherDetailsData) {
+//             console.log('Loan user other details:', otherDetailsData);
+
+//             // Populate the loan user other details in the modal
+//             $('#loanUserOtherDetailDetails').html(`
+//                 <p><strong>Other Detail 1:</strong> ${otherDetailsData.data.otherDetail1}</p>
+//                 <p><strong>Other Detail 2:</strong> ${otherDetailsData.data.otherDetail2}</p>
+//                 <!-- Add more fields as needed -->
+//             `);
+//         },
+//         error: function (xhr, status, error) {
+//             console.error('Error fetching loan user other details:', error);
+//         }
+//     });
+// }
+// function openUserModal(userId) {
+//     const userUrl = `/loan_users/${userId}`;
+//     const otherDetailsUrl = `/loan_users/${userId}/other_details`;
+
+//     // Fetch loan user details
+//     $.ajax({
+//         url: userUrl,
+//         method: 'GET',
+//         success: function (userData) {
+//             console.log('Loan user details:', userData);
+
+//             // Populate the loan user details in the modal
+//             $('#loanUserDetails').html(`
+//                 <p><strong>Owner Name:</strong> ${userData.data.Owner_name}</p>
+//                 <p><strong>Contact:</strong> ${userData.data.phone_no}</p>
+//                 <p><strong>CNIC:</strong> ${userData.data.cnic}</p>
+//                 <p><strong>Contact:</strong> ${userData.data.phone_no}</p>
+//                 <!-- Add more fields as needed -->
+//             `);
+
+//             // Show the modal
+//             const userModal = new bootstrap.Modal(document.getElementById('userModal'));
+//             userModal.show();
+//         },
+//         error: function (xhr, status, error) {
+//             console.error('Error fetching loan user details:', error);
+//         }
+//     });
+
+//     // Fetch loan user other details
+//     $.ajax({
+//         url: otherDetailsUrl,
+//         method: 'GET',
+//         success: function (otherDetailsData) {
+//             console.log('Loan user other details:', otherDetailsData);
+
+//             // Populate the loan user other details in the modal
+//             $('#loanUserOtherDetailDetails').html(`
+//                 <p><strong>Other Detail 1:</strong> ${otherDetailsData.data.otherDetail1}</p>
+//                 <p><strong>Other Detail 2:</strong> ${otherDetailsData.data.otherDetail2}</p>
+//                 <!-- Add more fields as needed -->
+//             `);
+//         },
+//         error: function (xhr, status, error) {
+//             console.error('Error fetching loan user other details:', error);
+//         }
+//     });
+// }
